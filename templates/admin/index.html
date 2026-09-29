@@ -1,0 +1,10 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="dashboard-panel">
+    <h1>Smart Grid Admin Dashboard</h1>
+    <p>Welcome to the administrator console for the Smart Grid cybersecurity framework. Use the applications below to inspect telemetry, manage IoT flows, and monitor security events.</p>
+  </div>
+  {{ block.super }}
+{% endblock %}

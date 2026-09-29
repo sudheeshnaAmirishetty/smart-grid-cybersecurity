@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 fade-in">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1>{{ title }}</h1>
+      <p class="lead">Review AI anomaly detection results in table form, then generate new alerts directly from telemetry data.</p>
+      <ul class="checklist">
+        <li>Realtime anomaly score tracking</li>
+        <li>Dataset-driven model review</li>
+        <li>Root-cause telemetry inspection</li>
+        <li>Actionable detection summaries</li>
+      </ul>
+    </div>
+    <div class="col-md-4 text-end">
+      <span class="badge bg-primary">Total records: {{ total_anomalies }}</span>
+    </div>
+  </div>
+  <div class="mt-4 d-flex gap-2 flex-wrap">
+    <button class="btn btn-primary btn-glow" type="button" onclick="document.getElementById('analysis-form').scrollIntoView({behavior:'smooth'})">Analyze telemetry</button>
+    <a class="btn btn-outline-primary btn-glow" href="/iot/api/messages/sample/">View sample payload</a>
+  </div>
+</div>
+
+<div class="card p-4 mt-4 fade-in" id="analysis-form">
+  <h3>Analyze IoT telemetry</h3>
+  <form method="post">
+    {% csrf_token %}
+    <div class="row g-3 mb-3">
+      <div class="col-md-4">
+        <label class="form-label">Device ID</label>
+        <input type="text" class="form-control" name="device_id" placeholder="sensor-001" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Temperature</label>
+        <input type="number" step="0.1" class="form-control" name="temperature" value="25" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Voltage</label>
+        <input type="number" step="0.1" class="form-control" name="voltage" value="220" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Humidity</label>
+        <input type="number" step="0.1" class="form-control" name="humidity" value="50" required>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Status</label>
+        <select class="form-select" name="device_status">
+          <option selected value="normal">normal</option>
+          <option value="warning">warning</option>
+          <option value="critical">critical</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-glow">Run anomaly scan</button>
+  </form>
+
+  {% if result %}
+  <div class="mt-4 alert alert-info">
+    <h5>Scan result</h5>
+    <p><strong>Device:</strong> {{ result.device_id }}</p>
+    <p><strong>Score:</strong> {{ result.score }}</p>
+    <p><strong>Prediction:</strong> {{ result.prediction }}</p>
+    <p><strong>Anomaly detected:</strong> {% if result.is_anomaly %}<span class="badge bg-danger">Yes</span>{% else %}<span class="badge bg-success">No</span>{% endif %}</p>
+  </div>
+  {% endif %}
+</div>
+
+<div class="card p-4 mt-4 fade-in">
+  <h3>Recent anomaly records</h3>
+  {% if anomalies %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Device ID</th>
+          <th>Score</th>
+          <th>Anomaly</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for anomaly in anomalies %}
+        <tr>
+          <td>{{ anomaly.device_id }}</td>
+          <td>{{ anomaly.score }}</td>
+          <td>{% if anomaly.is_anomaly %}<span class="badge bg-danger">Yes</span>{% else %}<span class="badge bg-success">No</span>{% endif %}</td>
+          <td>{{ anomaly.created_at|date:'Y-m-d H:i' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-secondary">No anomaly records available. Upload a dataset to generate AI analysis entries.</div>
+  {% endif %}
+</div>
+{% endblock %}

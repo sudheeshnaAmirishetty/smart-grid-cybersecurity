@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-banner fade-in">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1>{{ title }}</h1>
+      <p class="lead">Inspect recent immutable ledger entries produced by the blockchain security engine.</p>
+      <p class="text-white-50">Every transaction is hashed, time-stamped, and preserved for audit and forensic review.</p>
+    </div>
+    <div class="col-md-4 text-end">
+      <div class="badge bg-light text-dark p-3 shadow-sm">Transactions: {{ total_transactions }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card p-4 mt-4 fade-in">
+  {% if transactions %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Tx ID</th>
+          <th>Sender</th>
+          <th>Receiver</th>
+          <th>Amount</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tx in transactions %}
+        <tr>
+          <td>{{ tx.tx_id }}</td>
+          <td>{{ tx.sender }}</td>
+          <td>{{ tx.receiver }}</td>
+          <td>{{ tx.amount }}</td>
+          <td>{{ tx.timestamp|date:'Y-m-d H:i' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-secondary">No blockchain transaction records available yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

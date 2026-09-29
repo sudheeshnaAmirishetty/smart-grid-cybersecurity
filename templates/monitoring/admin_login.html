@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center fade-in">
+  <div class="col-md-6">
+    <div class="card p-4 shadow-sm">
+      <h2 class="mb-3">Portal Admin Login</h2>
+      <p class="text-muted">This is the separate admin portal for platform supervision, not the Django admin backend.</p>
+      {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" name="username" class="form-control" placeholder="portal_admin" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="Enter admin password" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-glow">Sign in as Admin</button>
+      </form>
+      <div class="mt-4 small text-muted">
+        Default portal admin credentials are created automatically for demo use. If you need to change them, update the application or use a staff user account.
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

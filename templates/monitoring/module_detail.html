@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 fade-in">
+  <h1>{{ module.1 }}</h1>
+  <p class="lead">This module supports the Smart Grid concept by providing dedicated telemetry, threat visibility, and recovery metrics for {{ module.1|lower }}.</p>
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="checklist">
+        <li>Smart Grid domain modeling for {{ module.1|lower }}</li>
+        <li>Secure telemetry and threat intelligence integration</li>
+        <li>Interactive dashboard summary and metrics</li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-light p-3">
+        <h5>Quick metrics</h5>
+        <ul class="list-unstyled mb-0">
+          {% for label, value in metrics.items %}
+          <li><strong>{{ label }}:</strong> {{ value }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-secondary btn-glow mt-4" href="/">Back to dashboard</a>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center fade-in">
+  <div class="col-md-6">
+    <div class="card p-4 text-center">
+      <h2 class="mb-4">Logged Out</h2>
+      <p>You have been signed out of the Smart Grid platform.</p>
+      <a class="btn btn-primary btn-glow" href="{% url 'login' %}">Log in again</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 fade-in">
+  <h1>{{ title }}</h1>
+  <p class="lead">AI-powered anomaly detection flags suspicious IoT device behavior early, before threats escalate.</p>
+  <ul class="checklist">
+    <li>Analyze device telemetry on ingest</li>
+    <li>Score sensor readings for anomalies</li>
+    <li>Predict potential attacks from smart grid data</li>
+    <li>Store anomaly records for investigation</li>
+  </ul>
+  <a class="btn btn-primary btn-glow mt-3" href="/ai/api/anomalies/">Review anomaly records</a>
+</div>
+{% endblock %}

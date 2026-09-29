@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 fade-in">
+  <h1>{{ title }}</h1>
+  <p class="lead">Secure IoT device telemetry with protocol awareness and anomaly-ready payload analytics.</p>
+  <ul class="checklist">
+    <li>MQTT, CoAP, HTTPS device messaging</li>
+    <li>Telemetry validation and dataset generation</li>
+    <li>IoT threat scoring for abnormal temperature/voltage</li>
+    <li>Upload datasets for training cybersecurity models</li>
+  </ul>
+  <div class="d-flex gap-2 flex-wrap">
+    <a class="btn btn-primary btn-glow mt-3" href="/iot/upload/">Upload IoT Dataset</a>
+    <a class="btn btn-light btn-glow mt-3" href="/iot/api/messages/sample/">View sample IoT payload</a>
+  </div>
+</div>
+{% endblock %}

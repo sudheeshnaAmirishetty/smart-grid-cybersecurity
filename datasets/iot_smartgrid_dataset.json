@@ -1,0 +1,22 @@
+[
+  {"device_id": "sensor-001", "protocol": "MQTT", "temperature": 23.4, "voltage": 221.0, "humidity": 48, "device_status": "normal"},
+  {"device_id": "sensor-002", "protocol": "CoAP", "temperature": 39.1, "voltage": 250.4, "humidity": 18, "device_status": "critical"},
+  {"device_id": "sensor-003", "protocol": "HTTPS", "temperature": 18.9, "voltage": 216.3, "humidity": 60, "device_status": "warning"},
+  {"device_id": "sensor-004", "protocol": "MQTT", "temperature": 21.7, "voltage": 219.5, "humidity": 55, "device_status": "normal"},
+  {"device_id": "sensor-005", "protocol": "CoAP", "temperature": 36.2, "voltage": 245.8, "humidity": 22, "device_status": "critical"},
+  {"device_id": "sensor-006", "protocol": "HTTPS", "temperature": 17.2, "voltage": 198.4, "humidity": 15, "device_status": "critical"},
+  {"device_id": "sensor-007", "protocol": "MQTT", "temperature": 24.8, "voltage": 223.2, "humidity": 49, "device_status": "normal"},
+  {"device_id": "sensor-008", "protocol": "CoAP", "temperature": 29.5, "voltage": 230.1, "humidity": 70, "device_status": "normal"},
+  {"device_id": "sensor-009", "protocol": "HTTPS", "temperature": 16.8, "voltage": 205.0, "humidity": 80, "device_status": "warning"},
+  {"device_id": "sensor-010", "protocol": "MQTT", "temperature": 26.1, "voltage": 219.0, "humidity": 40, "device_status": "normal"},
+  {"device_id": "sensor-011", "protocol": "CoAP", "temperature": 34.0, "voltage": 241.6, "humidity": 25, "device_status": "warning"},
+  {"device_id": "sensor-012", "protocol": "HTTPS", "temperature": 20.3, "voltage": 220.3, "humidity": 52, "device_status": "normal"},
+  {"device_id": "sensor-013", "protocol": "MQTT", "temperature": 37.8, "voltage": 248.9, "humidity": 19, "device_status": "critical"},
+  {"device_id": "sensor-014", "protocol": "CoAP", "temperature": 19.5, "voltage": 214.0, "humidity": 65, "device_status": "normal"},
+  {"device_id": "sensor-015", "protocol": "HTTPS", "temperature": 22.0, "voltage": 228.5, "humidity": 72, "device_status": "warning"},
+  {"device_id": "sensor-016", "protocol": "MQTT", "temperature": 15.9, "voltage": 190.2, "humidity": 12, "device_status": "critical"},
+  {"device_id": "sensor-017", "protocol": "CoAP", "temperature": 27.3, "voltage": 235.4, "humidity": 58, "device_status": "normal"},
+  {"device_id": "sensor-018", "protocol": "HTTPS", "temperature": 31.0, "voltage": 242.1, "humidity": 68, "device_status": "warning"},
+  {"device_id": "sensor-019", "protocol": "MQTT", "temperature": 18.1, "voltage": 201.7, "humidity": 30, "device_status": "warning"},
+  {"device_id": "sensor-020", "protocol": "CoAP", "temperature": 25.2, "voltage": 218.9, "humidity": 45, "device_status": "normal"}
+]

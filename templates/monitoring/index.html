@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-banner fade-in">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1>Intelligent Smart Grid Security</h1>
+      <p class="lead">A polished IoT-enabled framework combining AI, Blockchain, SDN, and CIA-based cybersecurity to protect modern power networks.</p>
+      <p>Monitor devices, inspect threat scores, detect anomalous IoT traffic, and manage secure blockchain exchanges from one dashboard.</p>
+      {% if has_dataset %}
+      <a href="/iot/" class="btn btn-light btn-glow me-2">Explore IoT Threats</a>
+      <a href="/cybersecurity/" class="btn btn-outline-light btn-glow">CIA Risk Classification</a>
+      {% else %}
+      <a href="/iot/upload/" class="btn btn-light btn-glow me-2">Upload IoT Dataset</a>
+      <span class="badge bg-warning text-dark align-middle">Upload a dataset first to unlock modules</span>
+      {% endif %}
+    </div>
+    <div class="col-md-4 text-end">
+      <span class="badge bg-light text-dark badge-pill mb-2">Smart Grid concept</span>
+      <div class="card bg-white bg-opacity-90 p-4 mt-3 shadow-sm">
+        <h5>Core outcomes</h5>
+        <ul class="checklist">
+          <li>Realtime anomaly detection</li>
+          <li>Immutable audit ledger</li>
+          <li>Traffic isolation with SDN</li>
+          <li>Secure IoT device telemetry</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-md-3 fade-in">
+    <div class="card metric-card p-4">
+      <h5>Devices</h5>
+      <p class="display-6">{{ counts.devices|default:'0' }}</p>
+      <p>Monitored grid nodes</p>
+    </div>
+  </div>
+  <div class="col-md-3 fade-in">
+    <div class="card metric-card p-4">
+      <h5>IoT Messages</h5>
+      <p class="display-6">{{ counts.messages|default:'0' }}</p>
+      <p>Secure sensor reports</p>
+    </div>
+  </div>
+  <div class="col-md-3 fade-in">
+    <div class="card metric-card p-4">
+      <h5>Threat Logs</h5>
+      <p class="display-6">{{ counts.threats|default:'0' }}</p>
+      <p>CIA-classified events</p>
+    </div>
+  </div>
+  <div class="col-md-3 fade-in">
+    <div class="card metric-card p-4">
+      <h5>Anomalies</h5>
+      <p class="display-6">{{ counts.anomalies|default:'0' }}</p>
+      <p>AI suspicious alerts</p>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-md-6 fade-in">
+    <div class="card p-4">
+      <h4>Latest anomaly alerts</h4>
+      <ul class="list-group list-group-flush">
+        {% for anomaly in top_anomalies %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ anomaly.device_id }}
+          <span class="badge bg-danger rounded-pill">{{ anomaly.score }}</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No anomalies detected yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6 fade-in">
+    <div class="card p-4">
+      <h4>Critical threat records</h4>
+      <ul class="list-group list-group-flush">
+        {% for threat in top_threats %}
+        <li class="list-group-item">
+          <strong>{{ threat.name }}</strong><br />CIA score: {{ threat.confidentiality|add:threat.integrity|add:threat.availability }}
+        </li>
+        {% empty %}
+        <li class="list-group-item">No threat records found.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2 class="mb-3">Platform modules</h2>
+{% if has_dataset %}
+<div class="row g-4">
+  {% for key,name in modules %}
+  <div class="col-md-3 fade-in">
+    <div class="card h-100 p-4">
+      <h5>{{ name }}</h5>
+      <p>Open the module to manage its smart grid cybersecurity capabilities.</p>
+      <a class="btn btn-primary btn-glow" href="/{{ key }}/">Open</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info shadow-sm fade-in">
+  <h4 class="alert-heading">Modules locked</h4>
+  <p>Upload an IoT dataset first to unlock the full Cybersecurity, AI, Blockchain, SDN, Threat Simulation, and Monitoring experience.</p>
+  <a class="btn btn-primary btn-glow" href="/iot/upload/">Upload IoT Dataset</a>
+</div>
+{% endif %}
+{% endblock %}

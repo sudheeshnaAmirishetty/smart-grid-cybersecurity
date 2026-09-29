@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-banner fade-in">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1>{{ title }}</h1>
+      <p class="lead">Blockchain security preserves integrity and immutability for smart grid message exchange.</p>
+      <ul class="checklist">
+        <li>Immutable transaction ledger</li>
+        <li>Secure exchange between IoT nodes</li>
+        <li>Audit logs for every record</li>
+        <li>Enhances trust across distributed grid devices</li>
+      </ul>
+      <a class="btn btn-primary btn-glow mt-3" href="/blockchain/audit/">Open audit dashboard</a>
+    </div>
+    <div class="col-md-4 text-end">
+      <div class="badge bg-light text-dark p-3 shadow-sm">Audit Ready</div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6 mb-3">
+    <div class="info-card p-4 shadow-sm fade-in">
+      <h5>Transaction count</h5>
+      <p class="display-6 text-gradient">{{ total_transactions }}</p>
+      <p class="mb-0 text-muted">Total recorded blockchain transactions</p>
+    </div>
+  </div>
+  <div class="col-md-6 mb-3">
+    <div class="info-card p-4 shadow-sm fade-in">
+      <h5>Most recent entry</h5>
+      {% if last_transaction %}
+      <p><strong>ID:</strong> {{ last_transaction.tx_id }}</p>
+      <p><strong>From:</strong> {{ last_transaction.sender }}</p>
+      <p><strong>To:</strong> {{ last_transaction.receiver }}</p>
+      <p><strong>Amount:</strong> {{ last_transaction.amount }}</p>
+      <p><strong>At:</strong> {{ last_transaction.timestamp|date:'Y-m-d H:i' }}</p>
+      {% else %}
+      <p>No recent transaction available.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

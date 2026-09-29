@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-banner fade-in">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1>{{ title }}</h1>
+      <p class="lead">A centralized SDN dashboard for dynamic flow control and traffic isolation across smart grid segments.</p>
+      <ul class="checklist">
+        <li>Realtime rule visibility</li>
+        <li>Rapid isolation of suspicious flows</li>
+        <li>Network policy enforcement</li>
+        <li>AI-based threat integration</li>
+      </ul>
+    </div>
+    <div class="col-md-4 text-end">
+      <div class="badge bg-info text-dark p-3 shadow-sm">Total Rules: {{ total_rules }}</div>
+      <div class="badge bg-danger text-white p-3 mt-2 shadow-sm">Blocked Flows: {{ blocked }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card p-4 mt-4 fade-in">
+  <h3>Active flow rules</h3>
+  {% if rules %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Protocol</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rule in rules %}
+        <tr>
+          <td>{{ rule.src }}</td>
+          <td>{{ rule.dst }}</td>
+          <td>{{ rule.protocol }}</td>
+          <td>{% if rule.action == 'deny' %}<span class="badge bg-danger">Deny</span>{% else %}<span class="badge bg-success">Allow</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-warning">No SDN flow rules have been configured yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

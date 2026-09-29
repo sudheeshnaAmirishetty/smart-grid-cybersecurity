@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 fade-in">
+  <h1>{{ title }}</h1>
+  <p class="lead">Classify threats using the Confidentiality, Integrity, and Availability (CIA) triad.</p>
+  <p>Each incident is scored and assigned a risk level so administrators can prioritize faster recovery and mitigation.</p>
+  <ul class="checklist">
+    <li>Confidentiality breach detection</li>
+    <li>Integrity tampering scoring</li>
+    <li>Availability outage risk assessment</li>
+    <li>Actionable recommendations for each threat</li>
+  </ul>
+  <a class="btn btn-primary btn-glow mt-3" href="/cybersecurity/api/cia-classify/">Run CIA classification</a>
+</div>
+{% endblock %}

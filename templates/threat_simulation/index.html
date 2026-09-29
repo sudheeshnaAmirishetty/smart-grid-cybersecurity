@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-banner fade-in">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h1>{{ title }}</h1>
+      <p class="lead">Run simulated attacks, review active scenarios, and validate smart grid resiliency in a single dashboard.</p>
+      <ul class="checklist">
+        <li>Insider compromise modeling</li>
+        <li>DDoS and service degradation tests</li>
+        <li>Impact scoring and risk insights</li>
+        <li>Continuous recovery planning</li>
+      </ul>
+    </div>
+    <div class="col-md-4 text-end">
+      <div class="badge bg-primary p-3 shadow-sm">Total scenarios: {{ total_scenarios }}</div>
+      <div class="badge bg-success p-3 mt-2 shadow-sm">Active: {{ active_scenarios }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="card p-4 mt-4 fade-in">
+  <h3>Simulation scenarios</h3>
+  {% if scenarios %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Attack type</th>
+          <th>Status</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for scenario in scenarios %}
+        <tr>
+          <td>{{ scenario.name }}</td>
+          <td>{{ scenario.attack_type }}</td>
+          <td>{% if scenario.is_active %}<span class="badge bg-success">Active</span>{% else %}<span class="badge bg-secondary">Inactive</span>{% endif %}</td>
+          <td>{{ scenario.score }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-warning">No simulation scenarios are currently defined.</div>
+  {% endif %}
+</div>
+{% endblock %}
